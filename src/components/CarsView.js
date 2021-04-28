@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'react-bootstrap';
+import { Jumbotron, Table } from 'react-bootstrap';
 
 import './CarsView.css';
 // ./ means the current directory
@@ -7,11 +7,33 @@ import './CarsView.css';
 // ./components/CarsView
 class CarsView extends React.Component{
     constructor(props){
-        super(props);
+    super(props);
+       this.state = {
+           currentCar : {}
+       };
+
+    }
+    chooseCar = (car) => {
+        this.setState(
+            {
+                currentCar: car
+            }
+        )
     }
     render(){
-        
+        const carRows = this.props.carsData.map( car => {
+            return (
+            <tr key={car.id} onClick={() => this.chooseCar(car)}>
+                <td>{car.brand}</td>
+                <td>{car.model}</td>
+                <td>{car.year}</td>
+                <td>{car.km}</td>
+                <td>{car.kmPerYear()}</td>
+            </tr>
+                )
+        })
         return (
+            <div>
             <Table striped className="my-table">
                 <thead>
                     <tr>
@@ -22,7 +44,16 @@ class CarsView extends React.Component{
                         <th>KM per year</th>
                     </tr>
                 </thead>
+                <tbody>
+                    {carRows}
+                </tbody>
             </Table>
+            <Jumbotron>
+                <h1>Selected car info</h1>
+                <h2>{this.state.currentCar.brand}</h2>
+                <h3>{this.state.currentCar.model}</h3>
+            </Jumbotron>
+            </div>
         )
     }
 }

@@ -1,9 +1,10 @@
 class Car {
-    constructor(brand, model, year, km){
+    constructor(brand, model, year, km, id){
         this.brand = brand;
         this.model = model;
         this.year = year;
         this.km = km;
+        this.id = id;
     } 
     kmPerYear() {
         const currentYear = new Date().getFullYear();
