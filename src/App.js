@@ -4,26 +4,21 @@ import './App.css';
 import CarsView from './components/CarsView';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Spinner } from 'react-bootstrap';
-
 import Car from './data-models/Car';
-
-// ./ means the current directory
-// ../ means go up one directory
-// ./components/CarsView
 class App extends React.Component {
-  // 1) After loading the page, get the data from cars-data.json
-  // 2) Convert data to Car class
-  // 3) Pass the cars into the carsData prop
-  // Where should I put the AJAX call?
+  // npm install react-router-dom
+  // Wrap the whole app with HashRouter
+  // Create AboutComp which will simply show some text
+  // Create 2 routes:
+  // 1. The cars table <Route exact path ="/">
+  // 2. The about route
+  // Add 2 links for homepage and the about, dont forget the #
   constructor(props){
     super(props);
     this.state = {
       carsData: [],
     }
-    // 1) Create a componentDidMount Hook
-    // 2) Save the json data into a variable
-    // 3) Save the json data into state
-    // 4) use State to pass to the carsData prop
+
   }
   componentDidMount = () => {
     fetch('/cars-data.json')
